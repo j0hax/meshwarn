@@ -15,10 +15,11 @@ class MessageChecker:
 
     def usable(self, id) -> bool:
         if id in self._known:
+            logger.info(f"Warning '{id}' is already known.")
             return False
         else:
             self._known.append(id)
-            logger.info(f"Added ID '{id}' to record")
+            logger.info(f"Added ID '{id}' to record.")
             return True
 
     def get_details(self, id):
