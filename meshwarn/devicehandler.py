@@ -3,6 +3,7 @@ from time import sleep
 import msgsplitter
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -19,7 +20,7 @@ class ChannelBroadcaster:
 
         if not hasattr(self, "_channelIndex"):
             raise Exception(f"Could not find index for channel '{channel}'")
-        
+
         logger.info(f"Channel index is {self._channelIndex}")
 
     def sendText(self, *messages):
@@ -33,5 +34,7 @@ class ChannelBroadcaster:
                 pkt = self._interface.sendText(
                     text=chunk, wantAck=True, channelIndex=self._channelIndex
                 )
-                logger.info(f"Sent packet ID {pkt.id} with contents '{pkt.decoded.payload.decode()}'")
+                logger.info(
+                    f"Sent packet ID {pkt.id} with contents '{pkt.decoded.payload.decode()}'"
+                )
                 sleep(10)
