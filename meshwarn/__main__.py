@@ -36,7 +36,7 @@ if __name__ == "__main__":
                     epilog='ALPHA VERSION')
     
     parser.add_argument('-s', '--serial', "--port", help="The port of the device to connect to using serial, e.g. /dev/ttyUSB0. (defaults to trying to detect a port)")
-    parser.add_argument('-c', '--channel', default="Nachrichten", help="Channel to broadcast messages to")
+    parser.add_argument('-c', '--channel', default="Warn", help="Channel to broadcast messages to")
     parser.add_argument('--ars', default="032410000000", help="Amtlicher Regionalschlüssel")
     args = parser.parse_args()
 
