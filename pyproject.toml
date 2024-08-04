@@ -6,7 +6,12 @@ authors = ["Johannes Arnold <johannes.arnold@stud.uni-hannover.de>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.12,<3.13"
+requests = "^2.32.3"
+meshtastic = "^2.3.14"
+black = "^24.8.0"
+apscheduler = {version = "^4.0.0a5", allow-prereleases = true}
+msgsplitter = "^1.0"
 
 
 [build-system]
