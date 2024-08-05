@@ -16,18 +16,16 @@ def main(serial, channel, ars):
     logging.basicConfig(level=logging.INFO)
     logger.info("Started")
 
-    checker = MessageChecker()
-
     interface = SerialInterface(serial)
+
     newsChannel = ChannelBroadcaster(channel, interface)
+    checker = MessageChecker(ars, newsChannel)
+
     warnTrigger = CronTrigger(minute="*/5")
 
     with Scheduler() as scheduler:
         # Add schedules, configure tasks here
-        scheduler.add_schedule(
-            newsChannel.sendText, trigger=warnTrigger, args=checker.get_warnings(ars)
-        )
-
+        scheduler.add_schedule(checker.sendNina, trigger=warnTrigger)
         scheduler.run_until_stopped()
 
 

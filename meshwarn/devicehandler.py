@@ -37,4 +37,6 @@ class ChannelBroadcaster:
                 logger.info(
                     f"Sent packet ID {pkt.id} with contents '{pkt.decoded.payload.decode()}'"
                 )
+
+                # We use a sleep here to prevent messages from being delivered out of order
                 sleep(10)
