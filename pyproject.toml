@@ -12,6 +12,7 @@ meshtastic = "^2.3.14"
 black = "^24.8.0"
 apscheduler = {version = "^4.0.0a5", allow-prereleases = true}
 msgsplitter = "^1.0"
+cachetools = "^5.4.0"
 
 
 [build-system]

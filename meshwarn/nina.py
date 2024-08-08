@@ -1,5 +1,5 @@
 import requests
-from collections import deque
+from cachetools import FIFOCache
 from meshwarn.devicehandler import ChannelBroadcaster
 import logging
 
@@ -35,7 +35,7 @@ class MessageChecker:
         """
         self.ars = ars
         self.cb = cb
-        self._known = deque([], maxlen=buffer_size)
+        self._known = FIFOCache(1024)
 
     def known(self, id: str, add=True) -> bool:
         """Check if a NINA Warning is already known (sent).
@@ -53,7 +53,7 @@ class MessageChecker:
             return True
         else:
             if add:
-                self._known.append(id)
+                self._known[id] = True
                 logger.info(f"Added ID '{id}' to list of known warnings")
             return False
 
